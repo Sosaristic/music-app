@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   AppBar,
   Grid,
@@ -8,11 +8,16 @@ import {
   Toolbar,
   IconButton,
   TextField,
+  Drawer,
+  Paper
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
 import Carousel from "../components/major components/Carousel";
+import MobileSideNav from "../components/major components/MobileSideNav";
 export default function Landing() {
+
+  const [open, setOpen] = useState(false);
   return (
     <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
@@ -41,6 +46,7 @@ export default function Landing() {
             <IconButton
               sx={{ color: "text.primary", marginLeft: "auto" }}
               size={"large"}
+              onClick={()=> setOpen(true)}
             >
               <MenuIcon />
             </IconButton>
@@ -77,6 +83,10 @@ export default function Landing() {
           />
         </Box>
         <Carousel />
+        <Drawer open={open} onClose={()=> setOpen(false)}>
+          <MobileSideNav />
+        </Drawer>
+      
       </Grid>
     </Grid>
   );
