@@ -9,15 +9,21 @@ import {
   IconButton,
   TextField,
   Drawer,
-  Paper
+  Paper,
+  BottomNavigation,
+  BottomNavigationAction,
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import LibraryMusicIcon from "@mui/icons-material/LibraryMusic"
+import FavoriteIcon from "@mui/icons-material/Favorite"
+
 import Carousel from "../components/major components/Carousel";
 import MobileSideNav from "../components/major components/MobileSideNav";
+import { HomeOutlined } from "@mui/icons-material";
 export default function Landing() {
-
   const [open, setOpen] = useState(false);
+  const [value, setValue] = useState(0);
   return (
     <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
@@ -46,7 +52,7 @@ export default function Landing() {
             <IconButton
               sx={{ color: "text.primary", marginLeft: "auto" }}
               size={"large"}
-              onClick={()=> setOpen(true)}
+              onClick={() => setOpen(true)}
             >
               <MenuIcon />
             </IconButton>
@@ -55,17 +61,15 @@ export default function Landing() {
         <Box
           mt={8}
           p={1}
-          
           sx={{
             display: "flex",
             alignItems: "center",
-            
+
             height: "2rem",
             backgroundColor: "neutral.main",
             position: "relative",
-          
+
             borderRadius: "10px",
-            
           }}
         >
           <SearchOutlinedIcon sx={{ color: "text.secondary" }} />
@@ -74,19 +78,40 @@ export default function Landing() {
             placeholder="search"
             variant="standard"
             type={"search"}
-          
-          sx={{
-            paddingLeft: "1rem",
-            width: "80%",
-            
-          }}
+            sx={{
+              paddingLeft: "1rem",
+              width: "80%",
+            }}
           />
         </Box>
         <Carousel />
-        <Drawer open={open} onClose={()=> setOpen(false)}>
+        <Drawer open={open} onClose={() => setOpen(false)}>
           <MobileSideNav />
         </Drawer>
-      
+        <Paper
+          sx={{
+            display: { sm: "none" },
+            position: "fixed",
+            bottom: 0,
+            left: 0,
+            right: 0,
+            bgcolor: "primary.main",
+          }}
+          elevation={3}
+        >
+          <BottomNavigation
+            showLabels
+            value={value}
+            onChange={(event, newValue) => {
+              setValue(newValue);
+            }}
+            sx={{bgcolor: "primary.main"}}
+          >
+            <BottomNavigationAction label="Music" icon={<HomeOutlined />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
+            <BottomNavigationAction label="Library" icon={<LibraryMusicIcon />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
+            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
+          </BottomNavigation>
+        </Paper>
       </Grid>
     </Grid>
   );
