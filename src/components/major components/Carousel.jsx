@@ -54,10 +54,10 @@ export default function Carousel() {
   let touchStartX = 0;
   let touchEndX = 0;
 const checkDirection = ()=>{
-  console.log(`touch start ${touchStartX} touch end${touchEndX}`);
+  
   touchEndX > touchStartX && Math.abs(difference)  > 30 && (showSlide(activeIndex - 1))
   touchEndX < touchStartX  && Math.abs(difference)  > 30 && (showSlide(activeIndex + 1))
-  console.log(difference);
+  
 
 }
   const handleTouchStart = (e)=>{
