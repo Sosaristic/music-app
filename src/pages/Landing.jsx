@@ -13,6 +13,7 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
+import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 
 import Carousel from "../components/major components/Carousel";
@@ -33,7 +34,7 @@ export default function Landing() {
                 fontWeight: "bold",
               }}
             >
-              A
+              <MusicNoteIcon />
             </Avatar>
             <Typography
               ml={2}
@@ -42,9 +43,10 @@ export default function Landing() {
                 justifyContent: "center",
                 alignItems: "center",
                 color: "text.primary",
+                fontFamily: `'Satisfy', cursive`,
               }}
             >
-              Allmusic
+              Music 360
             </Typography>
             <IconButton
               sx={{ color: "text.primary", marginLeft: "auto" }}
