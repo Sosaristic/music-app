@@ -11,6 +11,7 @@ export default function Carousel() {
 
   
   const [activeIndex, setActveIndex] = useState(0);
+  const [difference, setDifference] = useState(0)
   const imageData = [
     {
       id: 1,
@@ -50,7 +51,27 @@ export default function Carousel() {
     };
   });
 
- 
+  let touchStartX = 0;
+  let touchEndX = 0;
+const checkDirection = ()=>{
+  console.log(`touch start ${touchStartX} touch end${touchEndX}`);
+  touchEndX > touchStartX && Math.abs(difference)  > 30 && (showSlide(activeIndex - 1))
+  touchEndX < touchStartX  && Math.abs(difference)  > 30 && (showSlide(activeIndex + 1))
+  console.log(difference);
+
+}
+  const handleTouchStart = (e)=>{
+const touches = e.changedTouches[0]
+touchStartX = touches.screenX
+  }
+const handleTouchEnd = (e)=>{
+  const touches = e.changedTouches[0]
+  touchEndX = touches.screenX
+  setDifference((touchEndX - touchStartX))
+  checkDirection()
+
+  
+}
   return (
     <Box
     mt = {1}
@@ -63,13 +84,17 @@ export default function Carousel() {
       }}
     >
       <Box
+      onTouchStart={handleTouchStart}
+      onTouchEnd = {handleTouchEnd}
         sx={{
           whiteSpace: "nowrap",
           transition: "transform .5s",
           transform: `translateX(-${activeIndex * 100}%)`,
           display: "inline-flex",
           borderRadius: "8px",
+          
         }}
+        
       >
         {imageData.map((item) => {
           return (
