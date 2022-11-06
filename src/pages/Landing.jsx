@@ -9,21 +9,18 @@ import {
   IconButton,
   TextField,
   Drawer,
-  Paper,
-  BottomNavigation,
-  BottomNavigationAction,
+  
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import LibraryMusicIcon from "@mui/icons-material/LibraryMusic"
-import FavoriteIcon from "@mui/icons-material/Favorite"
+
 
 import Carousel from "../components/major components/Carousel";
 import MobileSideNav from "../components/major components/MobileSideNav";
-import { HomeOutlined } from "@mui/icons-material";
+import MusicNavigation from "../components/major components/MusicNavigation";
+import BottomNav from "../components/major components/BottomNavigation";
 export default function Landing() {
   const [open, setOpen] = useState(false);
-  const [value, setValue] = useState(0);
   return (
     <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
@@ -88,30 +85,8 @@ export default function Landing() {
         <Drawer open={open} onClose={() => setOpen(false)}>
           <MobileSideNav />
         </Drawer>
-        <Paper
-          sx={{
-            display: { sm: "none" },
-            position: "fixed",
-            bottom: 0,
-            left: 0,
-            right: 0,
-            bgcolor: "primary.main",
-          }}
-          elevation={3}
-        >
-          <BottomNavigation
-            showLabels
-            value={value}
-            onChange={(event, newValue) => {
-              setValue(newValue);
-            }}
-            sx={{bgcolor: "primary.main"}}
-          >
-            <BottomNavigationAction label="Music" icon={<HomeOutlined />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
-            <BottomNavigationAction label="Library" icon={<LibraryMusicIcon />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
-            <BottomNavigationAction label="Favorites" icon={<FavoriteIcon />} sx={{'&.Mui-selected': {color: "action.active"}}}/>
-          </BottomNavigation>
-        </Paper>
+        <MusicNavigation />
+      <BottomNav />
       </Grid>
     </Grid>
   );
