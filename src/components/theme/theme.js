@@ -18,6 +18,11 @@ export const theme = createTheme({
             primary: "#ffffd9",
             secondary: "#868686"
         }
+    },
+    typography : {
+        fontFamily: `"Heebo", "Roboto", sans-serif`
+
+        
     }
 })
 
