@@ -25,7 +25,7 @@ export default function Landing() {
   return (
     <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
-        <AppBar sx={{ display: { sm: "none" } }} p={2}>
+        <AppBar position="fixed" sx={{ display: { sm: "none" } }} p={2}>
           <Toolbar>
             <Avatar
               sx={{

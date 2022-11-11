@@ -11,10 +11,10 @@ function App() {
     <ThemeProvider theme={theme}>
       <CssBaseline />
       <Grid container sx={{ bgcolor: "red" }} >
-        <Grid item sx={{ display: { xs: "none", sm: "flex" }, bgcolor:"blue" }} sm={2}>
+        <Grid item sx={{ display: { xs: "none", sm: "flex" }, bgcolor:"blue" }} sm={3} lg={2}>
           <Sidebar />
         </Grid>
-        <Grid item sm={10} xs={12} sx={{bgcolor: 'secondary.main', color: 'white'}}>
+        <Grid item sm={9} xs={12} lg={10} sx={{bgcolor: 'secondary.main', color: 'white'}}>
           <Routes>
             <Route exact path="/" element={<Landing />} />
 
