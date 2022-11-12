@@ -1,4 +1,5 @@
 import React from 'react'
+import { Link } from 'react-router-dom';
 import { Avatar, Grid, Typography } from '@mui/material'
 import MusicNoteIcon from '@mui/icons-material/MusicNote';
 import { Box } from '@mui/system';
@@ -12,6 +13,7 @@ export default function Sidebar() {
       <Typography variant='h5' sx={{marginLeft: 2,}}>Music 360</Typography>
      </Box>
 
+     <Link to={"terms&condition"} style={{textDecoration: "none", color: "#ffffd9"}}>Terms and Condition</Link>
 
     </Grid>
   )
