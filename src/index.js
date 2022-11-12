@@ -18,12 +18,13 @@ const router = createBrowserRouter([
     element: <App />,
     children: [
       {index: true, element: <Landing />},
-      {
-        path: "terms&condition",
-        element: <TermsCondition />
-      }
+     
     ]
   },
+  {
+    path: "terms&condition",
+    element: <TermsCondition />
+  }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(
