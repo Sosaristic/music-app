@@ -1,7 +1,7 @@
 import React from "react";
-import {  Routes, Route } from "react-router-dom";
+import {  Outlet } from "react-router-dom";
 import { CssBaseline, Grid, ThemeProvider } from "@mui/material";
-import Landing from "./pages/Landing";
+
 import Sidebar from "./components/major components/Sidebar";
 import {theme} from "./components/theme/theme"
 
@@ -15,11 +15,7 @@ function App() {
           <Sidebar />
         </Grid>
         <Grid item sm={9} xs={12} lg={10} sx={{bgcolor: 'secondary.main', color: 'white'}}>
-          <Routes>
-            <Route exact path="/" element={<Landing />} />
-
-
-          </Routes>
+        <Outlet />
         </Grid>
       </Grid>
       </ThemeProvider>

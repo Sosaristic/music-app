@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import axios from "axios";
 import {
   AppBar,
   Grid,
@@ -22,6 +23,24 @@ import MusicNavigation from "../components/major components/MusicNavigation";
 import BottomNav from "../components/major components/BottomNavigation";
 export default function Landing() {
   const [open, setOpen] = useState(false);
+
+  const options = {
+    method: 'GET',
+    url: 'https://theaudiodb.p.rapidapi.com/searchalbum.php',
+    params: {s: 'daft_punk'},
+    headers: {
+      'X-RapidAPI-Key': '6acc06e50emshf0954e5e5b13820p184b17jsnda8af46f08df',
+      'X-RapidAPI-Host': 'theaudiodb.p.rapidapi.com'
+    }
+  };
+  
+  axios.request(options).then(function (response) {
+    console.log(response.data);
+  }).catch(function (error) {
+    console.error(error);
+  });
+
+  
   return (
     <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>

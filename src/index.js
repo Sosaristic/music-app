@@ -8,6 +8,8 @@ import {
   RouterProvider,
   
 } from "react-router-dom";
+import TermsCondition from './pages/TermsCondition';
+
 
 
 const router = createBrowserRouter([
@@ -15,7 +17,11 @@ const router = createBrowserRouter([
     path: "*",
     element: <App />,
     children: [
-      {index: true, element: <Landing />}
+      {index: true, element: <Landing />},
+      {
+        path: "terms&condition",
+        element: <TermsCondition />
+      }
     ]
   },
 ]);
