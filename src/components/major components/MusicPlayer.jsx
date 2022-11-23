@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from "react";
-import { Box, duration, LinearProgress, Typography } from "@mui/material";
+import { Box, LinearProgress, Typography } from "@mui/material";
 import { Avatar } from "@mui/material";
 import PlayArrowIcon from "@mui/icons-material/PlayArrow";
 import PauseIcon from "@mui/icons-material/Pause";
@@ -9,7 +9,7 @@ import testMusic from "../music/testMusic.mp3";
 export default function MusicPlayer() {
   const [play, setPlay] = useState(true);
   const [progress, setProgress] = useState(0)
-  const [audio, setAudio] = useState(new Audio(testMusic));
+  const [audio, ] = useState(new Audio(testMusic));
 
   const handlePlay = () => {
     if (play) {
@@ -36,21 +36,23 @@ export default function MusicPlayer() {
             const progress = Math.floor(duration)
             setProgress(progress)
         }, 1000)
+        return ()=>{ clearInterval(interval)}
     }
 
- }, [])
+ }, [audio.duration, audio.currentTime, play])
   return (
     <Box
       
       sx={{
         position: "fixed",
-        display: "flex",
+        display: {xs: "flex", sm: "none"},
         alignItems: "center",
         bottom: "3.5rem",
         bgcolor: "primary.main",
         width: "100%",
         zIndex: 100,
         height: "4rem",
+
       }}
     >
       <Box sx={{ position: "absolute", top: 0, width: "100%", color: "blue" }}>

@@ -21,7 +21,7 @@ export default function MusicNavigation() {
         </Avatar>
         <Typography>{title}</Typography>
       </Box>
-    );
+    )
   };
   return (
     <Box
