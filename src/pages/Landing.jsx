@@ -21,28 +21,15 @@ import Carousel from "../components/major components/Carousel";
 import MobileSideNav from "../components/major components/MobileSideNav";
 import MusicNavigation from "../components/major components/MusicNavigation";
 import BottomNav from "../components/major components/BottomNavigation";
+import MusicPlayer from "../components/major components/MusicPlayer";
 export default function Landing() {
   const [open, setOpen] = useState(false);
 
-  const options = {
-    method: 'GET',
-    url: 'https://theaudiodb.p.rapidapi.com/searchalbum.php',
-    params: {s: 'daft_punk'},
-    headers: {
-      'X-RapidAPI-Key': '6acc06e50emshf0954e5e5b13820p184b17jsnda8af46f08df',
-      'X-RapidAPI-Host': 'theaudiodb.p.rapidapi.com'
-    }
-  };
-  
-  axios.request(options).then(function (response) {
-    console.log(response.data);
-  }).catch(function (error) {
-    console.error(error);
-  });
+ 
 
   
   return (
-    <Grid container pl={1.5} pr={1} minHeight={"100vh"} sx={{ color: "white" }}>
+    <Grid container minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
         <AppBar position="fixed" sx={{ display: { sm: "none" } }} p={2}>
           <Toolbar>
@@ -82,11 +69,12 @@ export default function Landing() {
           sx={{
             display: "flex",
             alignItems: "center",
-
+            width: "95%",
             height: "2rem",
             backgroundColor: "neutral.main",
             position: "relative",
-
+            left: "50%",
+            transform: "translate(-50%, 0)",
             borderRadius: "10px",
           }}
         >
@@ -107,6 +95,7 @@ export default function Landing() {
           <MobileSideNav />
         </Drawer>
         <MusicNavigation />
+        <MusicPlayer />
       <BottomNav />
       </Grid>
     </Grid>

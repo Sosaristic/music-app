@@ -24,7 +24,7 @@ export default function MobileSideNav() {
       </Box>
       <Divider sx={{bgcolor: 'text.secondary', marginTop: 2, marginBlockEnd: 2}}/>
       <List>
-      {["Treanding songs", "New Songs", "PlayLists", "Artists"].map((item, index)=>{
+      {[ "Albulms","Artists", "PlayLists", ].map((item, index)=>{
         return <ListItem key={index} disablePadding sx={{marginTop: 2}}><ListItemText primary={item} /></ListItem>
       })}
       </List>

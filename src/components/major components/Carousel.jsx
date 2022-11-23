@@ -6,6 +6,8 @@ import image3 from "../images/image-product-3.jpg";
 import image4 from "../images/image-product-4.jpg";
 
 
+
+
 export default function Carousel() {
 
 
@@ -72,20 +74,28 @@ const handleTouchEnd = (e)=>{
 
   
 }
+
+
   return (
     <Box
     mt = {1}
       sx={{
         overflow: "hidden",
-        width: "100%",
-        height: "7rem",
+        
+        height: {xs: "7rem", sm: "14rem"},
         position: "relative",
+        left: "50%",
         borderRadius: "8px",
+        width: "95%",
+        transform: "translate(-50%, 0)",
       }}
+      
+      
     >
       <Box
       onTouchStart={handleTouchStart}
       onTouchEnd = {handleTouchEnd}
+      
         sx={{
           whiteSpace: "nowrap",
           transition: "transform .5s",
@@ -95,10 +105,11 @@ const handleTouchEnd = (e)=>{
           
         }}
         
+       
       >
         {imageData.map((item) => {
           return (
-            <Box key={item.id} sx={{ height: "7rem", minWidth: "100%" }}>
+            <Box key={item.id} sx={{  minWidth: "100%" }}>
               <img
                 src={item.image}
                 alt=""
