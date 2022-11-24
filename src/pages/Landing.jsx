@@ -1,10 +1,13 @@
 import React, { useState } from "react";
+
+import AppTitle from "../components/Reusable components/AppTitle"
+
 import {
   AppBar,
   Grid,
   Box,
-  Avatar,
-  Typography,
+  
+  
   Toolbar,
   IconButton,
   TextField,
@@ -13,7 +16,6 @@ import {
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-import MusicNoteIcon from '@mui/icons-material/MusicNote';
 
 
 import Carousel from "../components/major components/Carousel";
@@ -32,27 +34,7 @@ export default function Landing() {
       <Grid item xs={12}>
         <AppBar position="fixed" sx={{ display: { sm: "none" } }} p={2}>
           <Toolbar>
-            <Avatar
-              sx={{
-                bgcolor: "action.active",
-                color: "primary.main",
-                fontWeight: "bold",
-              }}
-            >
-              <MusicNoteIcon />
-            </Avatar>
-            <Typography
-              ml={2}
-              sx={{
-                display: "flex",
-                justifyContent: "center",
-                alignItems: "center",
-                color: "text.primary",
-                fontFamily: `'Satisfy', cursive`,
-              }}
-            >
-              Music 360
-            </Typography>
+           <AppTitle />
             <IconButton
               sx={{ color: "text.primary", marginLeft: "auto" }}
               size={"large"}
