@@ -7,98 +7,70 @@ import PauseIcon from "@mui/icons-material/Pause";
 import testImage from "../images/image-product-1-thumbnail.jpg";
 import testMusic from "../music/testMusic.mp3";
 export default function MusicPlayer() {
-  const [play, setPlay] = useState(true);
-  const [progress, setProgress] = useState(0)
-  const [audio, ] = useState(new Audio(testMusic));
-  const [audioLoaded, setAudioLoaded] = useState(false)
-  
-  
+  const [displayPlay, setDisplayPlay] = useState(true);
+  const [progress, setProgress] = useState(0);
+  const [audio] = useState(new Audio(testMusic));
+  const [audioLoaded, setAudioLoaded] = useState(false);
+  const [nowPlaying, setNowPlaying] = useState(false)
 
-// useEffect(()=>{
-//     audio.addEventListener("canplaythrough", ()=> setAudioLoaded(true))
-  
-//   return ()=> audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
-// }, [audio])
- 
-  
-
-
-
-const playMusic = ()=>{
-    if(audioLoaded === true && play === true){
-        
-        audio.play()
-        setPlay(false)
-       
+  const playMusic = () => {
+    if (audioLoaded === true && displayPlay === true) {
+      audio.play();
+      setDisplayPlay(false);
+    } else if (audioLoaded === true && displayPlay === false) {
+      audio.pause();
+      setDisplayPlay(true);
     }
-    else if (audioLoaded === true && play === false){
-       audio.pause() 
-       setPlay(true)
-    }
-}
+  };
 
+  const handleUpdateProgress = (e) => {
+    const { duration, currentTime } = e.srcElement;
+    setProgress((currentTime / duration) * 100);
+  };
 
- 
-//  useEffect(()=>{
-    
-//     if(audioLoaded){
-//         const interval = setInterval(()=>{
-//             const duration = musicDuration(audio.duration, audio.currentTime)
-//             const progress = Math.floor(duration)
-//             setProgress(progress)
-//         }, 1000)
-//         return ()=>{ clearInterval(interval)}
-//     }
+  const handleAudioEnded = () => {
+    setDisplayPlay(true);
+    setProgress(0);
+  };
 
-//  }, [audio.duration, audio.currentTime, play, audioLoaded])
+  useEffect(() => {
+    audio.addEventListener("timeupdate", handleUpdateProgress);
+    audio.addEventListener("canplaythrough", () => setAudioLoaded(true));
+    audio.addEventListener("ended", handleAudioEnded);
+    audio.addEventListener("play", ()=>setNowPlaying(true))
+    audio.addEventListener("pause", ()=>setNowPlaying(false))
 
-const handleUpdateProgress = (e)=>{
-const {duration, currentTime} = e.srcElement
-setProgress((currentTime/ duration) * 100)
-}
+    return () => {
+      audio.removeEventListener("timeupdate", handleUpdateProgress);
+      audio.removeEventListener("canplaythrough", () => setAudioLoaded(true));
+      audio.removeEventListener("canplaythrough", () => setAudioLoaded(true));
+      audio.removeEventListener("ended", handleAudioEnded);
+      audio.removeEventListener("play", ()=>setDisplayPlay(true))
+      audio.removeEventListener("pause", ()=>setDisplayPlay(false))
+    };
+  }, [audio]);
 
-const handleAudioEnded = ()=>{
-    setPlay(true)
-    setProgress(0)
-}
-// useEffect(()=>{
-//     audio.addEventListener("timeupdate", updateProgress)
-//     return ()=>audio.removeEventListener("timeupdate", updateProgress)
-// }, [audio])
-
-
-// audio.onended = () => {
-//     setPlay(true);
-    
-//   };
   useEffect(()=>{
-    audio.addEventListener("timeupdate", handleUpdateProgress)
-    audio.addEventListener("canplaythrough", ()=> setAudioLoaded(true))
-    audio.addEventListener("ended", handleAudioEnded)
-
-
-    return ()=>{
-        audio.removeEventListener("timeupdate", handleUpdateProgress)
-        audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
-        audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
-        audio.removeEventListener("ended", handleAudioEnded)
+    if(nowPlaying){
+        audio.play()
+        setDisplayPlay(false)
     }
-  }, [audio])
-
-  console.log(progress);
+    else{
+        audio.pause()
+        setDisplayPlay(true)
+    }
+  }, [audio, nowPlaying])
   return (
     <Box
-      
       sx={{
         position: "fixed",
-        display: {xs: "flex", sm: "none"},
+        display: { xs: "flex", sm: "none" },
         alignItems: "center",
         bottom: "3.5rem",
         bgcolor: "primary.main",
         width: "100%",
         zIndex: 100,
         height: "4rem",
-
       }}
     >
       <Box sx={{ position: "absolute", top: 0, width: "100%", color: "blue" }}>
@@ -111,7 +83,7 @@ const handleAudioEnded = ()=>{
           }}
         />
       </Box>
-      <Avatar src={testImage} sx={{marginLeft: 1}}/>
+      <Avatar src={testImage} sx={{ marginLeft: 1 }} />
       <Box ml={2}>
         <Typography variant="subtitle1">Before You Wake Up</Typography>
         <Typography variant="subtitle2" sx={{ color: "#868686" }}>
@@ -119,7 +91,6 @@ const handleAudioEnded = ()=>{
         </Typography>
       </Box>
       <Avatar
-      
         sx={{
           bgcolor: "action.active",
           color: "primary.main",
@@ -127,10 +98,10 @@ const handleAudioEnded = ()=>{
           marginRight: 2,
         }}
       >
-        {play ? (
-          <PlayArrowIcon  onClick={playMusic}/>
+        {displayPlay ? (
+          <PlayArrowIcon onClick={playMusic} />
         ) : (
-          <PauseIcon  onClick={playMusic}/>
+          <PauseIcon onClick={playMusic} />
         )}
       </Avatar>
     </Box>
