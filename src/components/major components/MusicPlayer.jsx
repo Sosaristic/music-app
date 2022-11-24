@@ -10,36 +10,82 @@ export default function MusicPlayer() {
   const [play, setPlay] = useState(true);
   const [progress, setProgress] = useState(0)
   const [audio, ] = useState(new Audio(testMusic));
+  const [audioLoaded, setAudioLoaded] = useState(false)
+  
+  
 
-  const handlePlay = () => {
-    if (play) {
-      audio.play();
-      setPlay(false);
-    } else if (!play) {
-      audio.pause();
-      setPlay(true);
+// useEffect(()=>{
+//     audio.addEventListener("canplaythrough", ()=> setAudioLoaded(true))
+  
+//   return ()=> audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
+// }, [audio])
+ 
+  
+
+
+
+const playMusic = ()=>{
+    if(audioLoaded === true && play === true){
+        
+        audio.play()
+        setPlay(false)
+       
     }
-  };
-  audio.onended = () => {
-    setPlay(true);
-  };
+    else if (audioLoaded === true && play === false){
+       audio.pause() 
+       setPlay(true)
+    }
+}
 
-  const musicDuration = (duration, currentTime) =>{
-    const percentage = (currentTime / duration) * 100
-    return percentage
-  }
- useEffect(()=>{
+
+ 
+//  useEffect(()=>{
     
-    if(play){
-        const interval = setInterval(()=>{
-            const duration = musicDuration(audio.duration, audio.currentTime)
-            const progress = Math.floor(duration)
-            setProgress(progress)
-        }, 1000)
-        return ()=>{ clearInterval(interval)}
-    }
+//     if(audioLoaded){
+//         const interval = setInterval(()=>{
+//             const duration = musicDuration(audio.duration, audio.currentTime)
+//             const progress = Math.floor(duration)
+//             setProgress(progress)
+//         }, 1000)
+//         return ()=>{ clearInterval(interval)}
+//     }
 
- }, [audio.duration, audio.currentTime, play])
+//  }, [audio.duration, audio.currentTime, play, audioLoaded])
+
+const handleUpdateProgress = (e)=>{
+const {duration, currentTime} = e.srcElement
+setProgress((currentTime/ duration) * 100)
+}
+
+const handleAudioEnded = ()=>{
+    setPlay(true)
+    setProgress(0)
+}
+// useEffect(()=>{
+//     audio.addEventListener("timeupdate", updateProgress)
+//     return ()=>audio.removeEventListener("timeupdate", updateProgress)
+// }, [audio])
+
+
+// audio.onended = () => {
+//     setPlay(true);
+    
+//   };
+  useEffect(()=>{
+    audio.addEventListener("timeupdate", handleUpdateProgress)
+    audio.addEventListener("canplaythrough", ()=> setAudioLoaded(true))
+    audio.addEventListener("ended", handleAudioEnded)
+
+
+    return ()=>{
+        audio.removeEventListener("timeupdate", handleUpdateProgress)
+        audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
+        audio.removeEventListener("canplaythrough", ()=>setAudioLoaded(true))
+        audio.removeEventListener("ended", handleAudioEnded)
+    }
+  }, [audio])
+
+  console.log(progress);
   return (
     <Box
       
@@ -82,9 +128,9 @@ export default function MusicPlayer() {
         }}
       >
         {play ? (
-          <PlayArrowIcon onClick={handlePlay} />
+          <PlayArrowIcon  onClick={playMusic}/>
         ) : (
-          <PauseIcon onClick={handlePlay} />
+          <PauseIcon  onClick={playMusic}/>
         )}
       </Avatar>
     </Box>
