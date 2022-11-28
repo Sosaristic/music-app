@@ -130,5 +130,5 @@ export default function Sidebar() {
         <ProfileCard />
       </Box>
     </Grid>
-  );
+  )
 }

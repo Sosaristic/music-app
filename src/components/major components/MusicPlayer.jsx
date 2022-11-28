@@ -64,9 +64,9 @@ export default function MusicPlayer() {
     <Box
       sx={{
         position: "fixed",
-        display: { xs: "flex", sm: "none" },
+        display: { xs: "flex",  },
         alignItems: "center",
-        bottom: "3.5rem",
+        bottom: {xs: "3.5rem", sm: "0"},
         bgcolor: "primary.main",
         width: "100%",
         zIndex: 100,
@@ -83,7 +83,7 @@ export default function MusicPlayer() {
           }}
         />
       </Box>
-      <Avatar src={testImage} sx={{ marginLeft: 1 }} />
+      <Avatar variant="rounded" src={testImage} sx={{ marginLeft: 1 }} />
       <Box ml={2}>
         <Typography variant="subtitle1">Before You Wake Up</Typography>
         <Typography variant="subtitle2" sx={{ color: "#868686" }}>

@@ -1,8 +1,11 @@
 import React from "react";
 
+import LoginSignUp from "../Reusable components/LoginSignUp";
+
 import { Link } from "react-router-dom";
-import { Box, Avatar, Typography, Divider, List, ListItem, ListItemText } from "@mui/material";
-import { AccountCircle } from "@mui/icons-material";
+import { Box, Divider } from "@mui/material";
+
+import NavList from "../Reusable components/NavList";
 
 export default function MobileSideNav() {
   return (
@@ -11,24 +14,26 @@ export default function MobileSideNav() {
         width: 250,
         minHeight: "100%",
         display: "flex",
-        flexDirection: 'column',
+        flexDirection: "column",
         bgcolor: "secondary.main",
         padding: "3rem 1rem",
       }}
     >
-      <Box sx={{display: 'flex', alignItems: 'center'}}>
-        <Avatar>
-          <AccountCircle />
-        </Avatar>
-        <Typography ml={2} > Log in/Sign up</Typography>
+      <Box>
+        <LoginSignUp />
       </Box>
-      <Divider sx={{bgcolor: 'text.secondary', marginTop: 2, marginBlockEnd: 2}}/>
-      <List>
-      {[ "Albulms","Artists", "PlayLists", ].map((item, index)=>{
-        return <ListItem key={index} disablePadding sx={{marginTop: 2}}><ListItemText primary={item} /></ListItem>
-      })}
-      </List>
-     <Link to={"terms&condition"} style={{textDecoration: "none", color: "#ffffd9"}}>Terms and Condition</Link>
+      <Divider
+        sx={{ bgcolor: "text.secondary", marginTop: 2, marginBlockEnd: 2 }}
+      />
+
+      <NavList />
+
+      <Link
+        to={"terms&condition"}
+        style={{ textDecoration: "none", color: "#ffffd9" }}
+      >
+        Terms and Condition
+      </Link>
     </Box>
   );
 }
