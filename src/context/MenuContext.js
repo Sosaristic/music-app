@@ -5,13 +5,19 @@ export const MenuContext = createContext()
 
 export  function MenuProvider({children}){
     const [menuOpen, setMenuOpen] = useState(false)
+    const [token, setToken] = useState(false)
 
     const update = ()=>{
         setMenuOpen(!menuOpen)
     }
+    const updateToken = (token)=>{
+        setToken(token)
+    }
     const value = {
         menuOpen,
-        update
+        update,
+        token,
+        updateToken
     }
     return(
         <MenuContext.Provider value={value}>

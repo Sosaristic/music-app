@@ -9,22 +9,41 @@ import {
   
 } from "react-router-dom";
 import TermsCondition from './pages/TermsCondition';
+import AlbumPage from './pages/Album';
+import Artists from './pages/Artists';
+import Playlists from './pages/Playlists';
+import TracksPage from './pages/Tracks';
+import PageNotFound from './pages/PageNotFound';
+import Myplaylist from './pages/Myplaylist';
+import MyAlbum from './pages/MyAlbum';
+import Authenticated from './components/Reusable components/Authenticated';
 
 
 
 const router = createBrowserRouter([
   {
-    path: "*",
+    path: "/",
     element: <App />,
     children: [
       {index: true, element: <Landing />},
-     
+      {path: "albums", element: <Authenticated> <AlbumPage /></Authenticated>  },
+      {path: "artists", element: <Authenticated> <Artists /></Authenticated>},
+      {path: "playlists", element: <Authenticated> <Playlists /></Authenticated>},
+      {path: "tracks", element: <Authenticated> <TracksPage /></Authenticated>},
+      {path: "my-library/recently-played", element: <Authenticated> <TracksPage /></Authenticated>},
+      {path: "my-library/playlists", element: <Authenticated> <Myplaylist /></Authenticated>},
+      {path: "my-library/albums", element: <Authenticated> <MyAlbum /></Authenticated>},
+
+
+
+
     ]
   },
   {
     path: "terms&condition",
     element: <TermsCondition />
-  }
+  },
+  {path: "*", element: <PageNotFound /> }
 ]);
 
 ReactDOM.createRoot(document.getElementById("root")).render(

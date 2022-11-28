@@ -21,6 +21,7 @@ import MobileSideNav from "../components/major components/MobileSideNav";
 import MusicNavigation from "../components/major components/MusicNavigation";
 import BottomNav from "../components/major components/BottomNavigation";
 import MusicPlayer from "../components/major components/MusicPlayer";
+import Authenticated from "../components/Reusable components/Authenticated";
 export default function Landing() {
   const [open, setOpen] = useState(false);
 
@@ -62,6 +63,7 @@ export default function Landing() {
             </IconButton>
           </Toolbar>
         </AppBar>
+        <Authenticated>
         <Box
           mt={8}
           p={1}
@@ -95,6 +97,7 @@ export default function Landing() {
         </Drawer>
         <MusicNavigation />
         <MusicPlayer />
+        </Authenticated>
       <BottomNav />
       </Grid>
     </Grid>
