@@ -12,11 +12,12 @@ import {
 
  
 
-export default function NavList({icon, linkName, url, active}) {
+export default function NavList({icon, linkName, url, active, handleSideBar}) {
     const navigate = useNavigate()
    
 const navigateTo = ()=>{
 navigate(url)
+
 
 }
 
@@ -24,11 +25,14 @@ navigate(url)
     return (
       <Box
         
-        sx={{ display: "flex",  alignItems: "center", color: "#868686" }}
+        sx={{ display: "flex",  alignItems: "center", color: "#868686", width: "100%" }}
       >
         <List sx={{width: "100%", }}>
           <ListItem disablePadding>
-            <ListItemButton onClick={navigateTo}>
+            <ListItemButton onClick={()=>{
+              navigateTo()
+              handleSideBar()
+            }}>
               <ListItemIcon sx={{color: `${active? "action.active" : "#868686"}`}}>{icon}</ListItemIcon>
               <ListItemText primary={linkName} sx={{color: `${active? "action.active" : "#868686"}`}}/>
             </ListItemButton>

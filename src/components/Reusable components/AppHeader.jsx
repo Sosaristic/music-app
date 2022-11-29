@@ -4,10 +4,11 @@ import { AppBar, Toolbar, IconButton } from "@mui/material";
 
 import MenuIcon from "@mui/icons-material/Menu";
 import AppTitle from "./AppTitle";
-import { useMenu } from "../../context/MenuContext";
+import { useSideBar } from "../../context/Sidebar";
 
-export default function AppHeader({ handleMenuOpen }) {
-  const {menuOpen, update} = useMenu()
+export default function AppHeader() {
+  
+  const {updateSideBar} = useSideBar()
   return (
     <Box>
       <AppBar position="fixed" sx={{ display: { sm: "none" } }} p={2}>
@@ -16,7 +17,7 @@ export default function AppHeader({ handleMenuOpen }) {
           <IconButton
             sx={{ color: "text.primary", marginLeft: "auto" }}
             size={"large"}
-            onClick={() => update()}
+            onClick={updateSideBar}
           >
             <MenuIcon />
           </IconButton>

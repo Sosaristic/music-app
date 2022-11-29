@@ -17,6 +17,7 @@ import PageNotFound from './pages/PageNotFound';
 import Myplaylist from './pages/Myplaylist';
 import MyAlbum from './pages/MyAlbum';
 import Authenticated from './components/Reusable components/Authenticated';
+import { MenuProvider } from './context/MenuContext';
 
 
 
@@ -48,7 +49,9 @@ const router = createBrowserRouter([
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>
+    <MenuProvider>
     <RouterProvider router={router} />
+    </MenuProvider>
   </React.StrictMode>
 );
 

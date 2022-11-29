@@ -1,29 +1,60 @@
 import React from "react";
+import { useMenu } from "../../context/MenuContext";
 import { Box } from "@mui/system";
-import { Avatar, Typography } from "@mui/material";
+import { Avatar, Button, Typography } from "@mui/material";
 import IconButton from "@mui/material/IconButton";
-import Tooltip from "@mui/material/Tooltip";
 import LogoutIcon from "@mui/icons-material/Logout";
+import LoginIcon from "@mui/icons-material/Login"
 
-import profileImage from "../images/image-product-1-thumbnail.jpg";
+import profileImage from "../images/Anderson.png";
+// const CLIENT_ID = "b39c9c2f4fa346a69e4cdbcafefd5185";
+// const REDIRECT_URI = "http://localhost:3000";
+// const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+// const RESPONSE_TYPE = "token";
 
-export default function ProfileCard() {
-  return (
-    <Box
-      sx={{
-        display: "flex",
-        alignItems: "center",
-        
-        width: "100%",
-      }}
-    >
-      <Avatar src={profileImage} />
-      <Typography ml={1} variant="subtitle2">Sunday Omena</Typography>
-      <Tooltip title="Logout" sx={{marginLeft: "auto"}}>
-        <IconButton>
+export default function ProfileCard({ handleSideBar }) {
+  const { token, updateToken } = useMenu();
+  const logout = () => {
+    updateToken(false);
+    window.localStorage.removeItem("token");
+    handleSideBar();
+  };
+  if (!token) {
+    return (
+      <Box ml={4}>
+        <Button
+        endIcon={<LoginIcon />}
+          // href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+          size="small"
+          variant="contained"
+          sx={{
+            backgroundColor: "action.active",
+            color: "primary.main",
+            margin: "0 auto",
+            "&:active": {backgroundColor: "actione.active", color: "primary.main"}
+          }}
+        >
+          Login
+        </Button>
+      </Box>
+    );
+  } else {
+    return (
+      <Box
+        sx={{
+          display: "flex",
+          alignItems: "center",
+          justifyContent: { xs: "space-between", sm: "space-around" },
+
+          width: "100%",
+        }}
+      >
+        <Avatar src={profileImage} />
+        <Typography variant="subtitle2">Anderson</Typography>
+        <IconButton sx={{ color: "red" }} onClick={logout}>
           <LogoutIcon />
         </IconButton>
-      </Tooltip>
-    </Box>
-  );
+      </Box>
+    );
+  }
 }

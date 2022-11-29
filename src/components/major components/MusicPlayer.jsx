@@ -64,7 +64,7 @@ export default function MusicPlayer() {
     <Box
       sx={{
         position: "fixed",
-        display: { xs: "flex",  },
+        display: { xs: "flex", sm: "none" },
         alignItems: "center",
         bottom: {xs: "3.5rem", sm: "0"},
         bgcolor: "primary.main",

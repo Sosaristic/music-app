@@ -1,10 +1,10 @@
 import React, { useEffect } from "react";
 import { Box } from "@mui/system";
 import { useMenu } from "../../context/MenuContext";
-const CLIENT_ID = "b39c9c2f4fa346a69e4cdbcafefd5185";
-const REDIRECT_URI = "http://localhost:3000";
-const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
-const RESPONSE_TYPE = "token";
+// const CLIENT_ID = "b39c9c2f4fa346a69e4cdbcafefd5185";
+// const REDIRECT_URI = "http://localhost:3000";
+// const AUTH_ENDPOINT = "https://accounts.spotify.com/authorize";
+// const RESPONSE_TYPE = "token";
 
 export default function Login() {
     const  {updateToken} = useMenu()
@@ -20,7 +20,7 @@ export default function Login() {
       window.localStorage.setItem("token", token);
       updateToken(true)
     }
-  }, []);
+  }, [updateToken]);
   return (
     <Box
       sx={{
@@ -30,8 +30,9 @@ export default function Login() {
         justifyContent: "center",
         alignItems: "center",
       }}
+      onClick={()=>updateToken(true)}
     >
-      <a
+      <div
         style={{
           position: "relative",
           textDecoration: "none",
@@ -40,10 +41,11 @@ export default function Login() {
           color: "#0d0d0d",
           fontSize: "large"
         }}
-        href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
+        href="#"
+        // href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
         Connect to spoify
-      </a>
+      </div>
     </Box>
   );
 }

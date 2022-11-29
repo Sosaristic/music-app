@@ -1,6 +1,6 @@
 import React from "react";
 import { useLocation } from "react-router-dom";
-import { Avatar, Grid, Typography } from "@mui/material";
+import { Avatar, Divider, Grid, Typography } from "@mui/material";
 import MusicNoteIcon from "@mui/icons-material/MusicNote";
 import { Box } from "@mui/system";
 import NavList from "../Reusable components/SideBarLinks";
@@ -20,8 +20,6 @@ export default function Sidebar() {
     }
   };
 
-  
-
   return (
     <Grid
       container
@@ -35,6 +33,7 @@ export default function Sidebar() {
       direction="column"
     >
       <Box
+      pl={1}
         mt={2}
         sx={{
           display: "flex",
@@ -45,18 +44,27 @@ export default function Sidebar() {
           flexWrap: "nowrap",
         }}
       >
-        <Avatar sx={{ bgcolor: "action.active" }}>
+        <Avatar sx={{ bgcolor: "action.active", color: "primary.main" }}>
           <MusicNoteIcon />
         </Avatar>
         <Typography variant="subtitle1" sx={{ color: "white" }}>
           Music 360
         </Typography>
       </Box>
-
-      <Box
-      mt={3}
+      <Divider
         sx={{
-         
+          bgcolor: "text.secondary",
+          marginTop: 1,
+          width: "80%",
+          position: "relative",
+          left: "50%",
+          transform: "translate(-50%, 0)"
+        }}
+      />
+      <Box
+        mt={3}
+        
+        sx={{
           width: "100%",
           display: "flex",
           alignItems: "center",
@@ -65,12 +73,7 @@ export default function Sidebar() {
       >
         <ProfileCard />
       </Box>
-      <Typography
-        mt={4}
-        pl={3}
-        variant="subtitle"
-        sx={{ color: "white" }}
-      >
+      <Typography mt={4} pl={3} variant="subtitle" sx={{ color: "white" }}>
         Music
       </Typography>
 
@@ -105,12 +108,7 @@ export default function Sidebar() {
         url="tracks"
       />
 
-      <Typography
-        mt={4}
-        pl={3}
-        variant="subtitle"
-        sx={{  color: "white" }}
-      >
+      <Typography mt={4} pl={3} variant="subtitle" sx={{ color: "white" }}>
         My Library
       </Typography>
       <NavList
@@ -131,8 +129,6 @@ export default function Sidebar() {
         active={activeLink("/my-library/playlists")}
         url="my-library/playlists"
       />
-
-     
     </Grid>
-  )
+  );
 }

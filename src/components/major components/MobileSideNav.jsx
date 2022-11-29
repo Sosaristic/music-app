@@ -10,9 +10,15 @@ import DiscFullIcon from "@mui/icons-material/DiscFull";
 import WhatshotIcon from "@mui/icons-material/Whatshot";
 
 import ProfileCard from "../Reusable components/ProfileCard";
+import { useSideBar } from "../../context/Sidebar";
 
 export default function MobileSideNav() {
   const { pathname } = useLocation();
+  const { updateSideBar} = useSideBar()
+
+const handleSideBar = ()=>{
+  updateSideBar()
+}
 
   const activeLink = (path) => {
     if (path === pathname) {
@@ -31,7 +37,7 @@ export default function MobileSideNav() {
       }}
     >
       <Box>
-        <ProfileCard />
+        <ProfileCard handleSideBar={handleSideBar}/>
       </Box>
       <Divider
         sx={{ bgcolor: "text.secondary", marginTop: 2, marginBlockEnd: 2 }}
@@ -42,30 +48,39 @@ export default function MobileSideNav() {
         linkName="Home"
         active={activeLink("/")}
         url="/"
+        handleSideBar = {handleSideBar}
       />
       <NavList
         icon={<AlbumIcon />}
         linkName="Albums"
         active={activeLink("/albums")}
         url="albums"
+        handleSideBar = {handleSideBar}
+
       />
       <NavList
         icon={<EmojiPeopleIcon />}
         linkName="Artists"
         active={activeLink("/artists")}
         url="artists"
+        handleSideBar = {handleSideBar}
+
       />
       <NavList
         icon={<WhatshotIcon />}
         linkName="Playlists"
         active={activeLink("/playlists")}
         url="playlists"
+        handleSideBar = {handleSideBar}
+
       />
       <NavList
         icon={<DiscFullIcon />}
         linkName="Tracks"
         active={activeLink("/tracks")}
         url="tracks"
+        handleSideBar = {handleSideBar}
+
       />
     </Box>
   );

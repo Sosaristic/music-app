@@ -9,6 +9,7 @@ export  function MenuProvider({children}){
 
     const update = ()=>{
         setMenuOpen(!menuOpen)
+      
     }
     const updateToken = (token)=>{
         setToken(token)
