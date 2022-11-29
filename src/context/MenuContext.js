@@ -5,7 +5,7 @@ export const MenuContext = createContext()
 
 export  function MenuProvider({children}){
     const [menuOpen, setMenuOpen] = useState(false)
-    const [token, setToken] = useState(false)
+    const [token, setToken] = useState(true)
 
     const update = ()=>{
         setMenuOpen(!menuOpen)

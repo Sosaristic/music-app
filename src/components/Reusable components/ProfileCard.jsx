@@ -13,13 +13,13 @@ export default function ProfileCard() {
       sx={{
         display: "flex",
         alignItems: "center",
-        justifyContent: "space-between",
+        
         width: "100%",
       }}
     >
       <Avatar src={profileImage} />
-      <Typography variant="subtitle2">Sunday Omena</Typography>
-      <Tooltip title="Logout">
+      <Typography ml={1} variant="subtitle2">Sunday Omena</Typography>
+      <Tooltip title="Logout" sx={{marginLeft: "auto"}}>
         <IconButton>
           <LogoutIcon />
         </IconButton>

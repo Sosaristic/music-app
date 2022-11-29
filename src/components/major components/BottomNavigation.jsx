@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { Paper, BottomNavigation, BottomNavigationAction } from "@mui/material";
 import LibraryMusicIcon from "@mui/icons-material/LibraryMusic"
-import FavoriteIcon from "@mui/icons-material/Favorite"
 import { HomeOutlined } from "@mui/icons-material";
 
 
@@ -38,11 +37,7 @@ export default function BottomNav() {
           icon={<LibraryMusicIcon />}
           sx={{ "&.Mui-selected": { color: "action.active" } }}
         />
-        <BottomNavigationAction
-          label="Favorites"
-          icon={<FavoriteIcon />}
-          sx={{ "&.Mui-selected": { color: "action.active" } }}
-        />
+        
       </BottomNavigation>
     </Paper>
   );

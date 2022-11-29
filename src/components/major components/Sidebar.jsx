@@ -52,12 +52,26 @@ export default function Sidebar() {
           Music 360
         </Typography>
       </Box>
+
+      <Box
+      mt={3}
+        sx={{
+         
+          width: "100%",
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "flex-start",
+        }}
+      >
+        <ProfileCard />
+      </Box>
       <Typography
         mt={4}
+        pl={3}
         variant="subtitle"
-        sx={{ textAlign: "center", color: "white" }}
+        sx={{ color: "white" }}
       >
-        Recommended
+        Music
       </Typography>
 
       <NavList
@@ -93,8 +107,9 @@ export default function Sidebar() {
 
       <Typography
         mt={4}
+        pl={3}
         variant="subtitle"
-        sx={{ textAlign: "center", color: "white" }}
+        sx={{  color: "white" }}
       >
         My Library
       </Typography>
@@ -117,18 +132,7 @@ export default function Sidebar() {
         url="my-library/playlists"
       />
 
-      <Box
-        sx={{
-          position: "absolute",
-          bottom: "2rem",
-          width: "100%",
-          display: "flex",
-          alignItems: "center",
-          justifyContent: "flex-start",
-        }}
-      >
-        <ProfileCard />
-      </Box>
+     
     </Grid>
   )
 }

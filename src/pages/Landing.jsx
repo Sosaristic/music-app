@@ -1,22 +1,18 @@
 import React, { useState } from "react";
 
-import AppTitle from "../components/Reusable components/AppTitle"
+import AppTitle from "../components/Reusable components/AppTitle";
 
 import {
   AppBar,
   Grid,
   Box,
-  
-  
   Toolbar,
   IconButton,
   TextField,
   Drawer,
-  
 } from "@mui/material";
 import MenuIcon from "@mui/icons-material/Menu";
 import SearchOutlinedIcon from "@mui/icons-material/SearchOutlined";
-
 
 import Carousel from "../components/major components/Carousel";
 import MobileSideNav from "../components/major components/MobileSideNav";
@@ -27,15 +23,12 @@ import Authenticated from "../components/Reusable components/Authenticated";
 export default function Landing() {
   const [open, setOpen] = useState(false);
 
- 
-
-  
   return (
     <Grid container minHeight={"100vh"} sx={{ color: "white" }}>
       <Grid item xs={12}>
         <AppBar position="fixed" sx={{ display: { sm: "none" } }} p={2}>
           <Toolbar>
-           <AppTitle />
+            <AppTitle />
             <IconButton
               sx={{ color: "text.primary", marginLeft: "auto" }}
               size={"large"}
@@ -46,41 +39,41 @@ export default function Landing() {
           </Toolbar>
         </AppBar>
         <Authenticated>
-        <Box
-          mt={8}
-          p={1}
-          sx={{
-            display: "flex",
-            alignItems: "center",
-            width: "95%",
-            height: "2rem",
-            backgroundColor: "neutral.main",
-            position: "relative",
-            left: "50%",
-            transform: "translate(-50%, 0)",
-            borderRadius: "10px",
-          }}
-        >
-          <SearchOutlinedIcon sx={{ color: "text.secondary" }} />
-          <TextField
-            id="input-with-sx"
-            placeholder="search"
-            variant="standard"
-            type={"search"}
+          <Box
+            mt={8}
+            p={1}
             sx={{
-              paddingLeft: "1rem",
-              width: "80%",
+              display: "flex",
+              alignItems: "center",
+              width: "95%",
+              height: "2rem",
+              backgroundColor: "neutral.main",
+              position: "relative",
+              left: "50%",
+              transform: "translate(-50%, 0)",
+              borderRadius: "10px",
             }}
-          />
-        </Box>
-        <Carousel />
-        <Drawer open={open} onClose={() => setOpen(false)}>
-          <MobileSideNav />
-        </Drawer>
-        <MusicNavigation />
-        <MusicPlayer />
+          >
+            <SearchOutlinedIcon sx={{ color: "text.secondary" }} />
+            <TextField
+              id="input-with-sx"
+              placeholder="search"
+              variant="standard"
+              type={"search"}
+              sx={{
+                paddingLeft: "1rem",
+                width: "80%",
+              }}
+            />
+          </Box>
+          <Carousel />
+          <Drawer open={open} onClose={() => setOpen(false)}>
+            <MobileSideNav />
+          </Drawer>
+          <MusicNavigation />
+          <MusicPlayer />
         </Authenticated>
-      <BottomNav />
+        <BottomNav />
       </Grid>
     </Grid>
   );

@@ -1,13 +1,24 @@
 import React from "react";
+import { useLocation } from "react-router-dom";
 
-import LoginSignUp from "../Reusable components/LoginSignUp";
-
-import { Link } from "react-router-dom";
 import { Box, Divider } from "@mui/material";
+import NavList from "../Reusable components/SideBarLinks";
+import AlbumIcon from "@mui/icons-material/Album";
+import HomeIcon from "@mui/icons-material/Home";
+import EmojiPeopleIcon from "@mui/icons-material/EmojiPeople";
+import DiscFullIcon from "@mui/icons-material/DiscFull";
+import WhatshotIcon from "@mui/icons-material/Whatshot";
 
-import NavList from "../Reusable components/NavList";
+import ProfileCard from "../Reusable components/ProfileCard";
 
 export default function MobileSideNav() {
+  const { pathname } = useLocation();
+
+  const activeLink = (path) => {
+    if (path === pathname) {
+      return "active";
+    }
+  };
   return (
     <Box
       sx={{
@@ -20,20 +31,42 @@ export default function MobileSideNav() {
       }}
     >
       <Box>
-        <LoginSignUp />
+        <ProfileCard />
       </Box>
       <Divider
         sx={{ bgcolor: "text.secondary", marginTop: 2, marginBlockEnd: 2 }}
       />
 
-      <NavList />
-
-      <Link
-        to={"terms&condition"}
-        style={{ textDecoration: "none", color: "#ffffd9" }}
-      >
-        Terms and Condition
-      </Link>
+      <NavList
+        icon={<HomeIcon />}
+        linkName="Home"
+        active={activeLink("/")}
+        url="/"
+      />
+      <NavList
+        icon={<AlbumIcon />}
+        linkName="Albums"
+        active={activeLink("/albums")}
+        url="albums"
+      />
+      <NavList
+        icon={<EmojiPeopleIcon />}
+        linkName="Artists"
+        active={activeLink("/artists")}
+        url="artists"
+      />
+      <NavList
+        icon={<WhatshotIcon />}
+        linkName="Playlists"
+        active={activeLink("/playlists")}
+        url="playlists"
+      />
+      <NavList
+        icon={<DiscFullIcon />}
+        linkName="Tracks"
+        active={activeLink("/tracks")}
+        url="tracks"
+      />
     </Box>
   );
 }
