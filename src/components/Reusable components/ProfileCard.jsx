@@ -14,10 +14,17 @@ import profileImage from "../images/Anderson.png";
 
 export default function ProfileCard({ handleSideBar }) {
   const { token, updateToken } = useMenu();
-  const logout = () => {
-    updateToken(false);
-    window.localStorage.removeItem("token");
-    handleSideBar();
+  const logout = (login) => {
+    if(!login){
+      updateToken(false);
+      window.localStorage.removeItem("token");
+      handleSideBar();
+    }
+    if(login){
+      updateToken(true)
+      handleSideBar();
+    }
+   
   };
   if (!token) {
     return (
@@ -33,6 +40,7 @@ export default function ProfileCard({ handleSideBar }) {
             margin: "0 auto",
             "&:active": {backgroundColor: "actione.active", color: "primary.main"}
           }}
+          onClick={()=>logout(true)}
         >
           Login
         </Button>
@@ -51,7 +59,7 @@ export default function ProfileCard({ handleSideBar }) {
       >
         <Avatar src={profileImage} />
         <Typography variant="subtitle2">Anderson</Typography>
-        <IconButton sx={{ color: "red" }} onClick={logout}>
+        <IconButton sx={{ color: "red" }} onClick={()=>logout(false)}>
           <LogoutIcon />
         </IconButton>
       </Box>
