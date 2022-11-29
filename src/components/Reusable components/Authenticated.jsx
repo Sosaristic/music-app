@@ -5,8 +5,9 @@ import Login from "./Login";
 
 export default function Authenticated({ children }) {
   const { token } = useMenu();
+  const savedToken = window.localStorage.getItem("token")
 
-  if (!token) {
+  if (!token && !savedToken) {
     return <Login />;
   }
   return <Box>{children}</Box>;
