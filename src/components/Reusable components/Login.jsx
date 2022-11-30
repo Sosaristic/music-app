@@ -44,7 +44,7 @@ export default function Login() {
         href="#"
         // href={`${AUTH_ENDPOINT}?client_id=${CLIENT_ID}&redirect_uri=${REDIRECT_URI}&response_type=${RESPONSE_TYPE}`}
       >
-        Connect to spoify
+        Connect to spotify
       </div>
     </Box>
   );
