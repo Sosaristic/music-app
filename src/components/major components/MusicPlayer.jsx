@@ -6,12 +6,14 @@ import PauseIcon from "@mui/icons-material/Pause";
 
 import testImage from "../images/image-product-1-thumbnail.jpg";
 import testMusic from "../music/testMusic.mp3";
+import { useMenu } from "../../context/MenuContext";
 export default function MusicPlayer() {
   const [displayPlay, setDisplayPlay] = useState(true);
   const [progress, setProgress] = useState(0);
   const [audio] = useState(new Audio(testMusic));
   const [audioLoaded, setAudioLoaded] = useState(false);
   const [nowPlaying, setNowPlaying] = useState(false)
+  const {token} = useMenu()
 
   const playMusic = () => {
     if (audioLoaded === true && displayPlay === true) {
@@ -60,50 +62,54 @@ export default function MusicPlayer() {
         setDisplayPlay(true)
     }
   }, [audio, nowPlaying])
-  return (
-    <Box
-      sx={{
-        position: "fixed",
-        display: { xs: "flex", sm: "none" },
-        alignItems: "center",
-        bottom: {xs: "3.5rem", sm: "0"},
-        bgcolor: "primary.main",
-        width: "100%",
-        zIndex: 100,
-        height: "4rem",
-      }}
-    >
-      <Box sx={{ position: "absolute", top: 0, width: "100%", color: "blue" }}>
-        <LinearProgress
-          variant="determinate"
-          value={progress}
-          sx={{
-            backgroundColor: "secondary.main",
-            "& .MuiLinearProgress-bar": { backgroundColor: "action.active" },
-          }}
-        />
-      </Box>
-      <Avatar variant="rounded" src={testImage} sx={{ marginLeft: 1 }} />
-      <Box ml={2}>
-        <Typography variant="subtitle1">Before You Wake Up</Typography>
-        <Typography variant="subtitle2" sx={{ color: "#868686" }}>
-          Adekunle Gold
-        </Typography>
-      </Box>
-      <Avatar
+  if(token){
+    return (
+  
+      <Box
         sx={{
-          bgcolor: "action.active",
-          color: "primary.main",
-          marginLeft: "auto",
-          marginRight: 2,
+          position: "fixed",
+          display: { xs: "flex", sm: "none" },
+          alignItems: "center",
+          bottom: {xs: "3.5rem", sm: "0"},
+          bgcolor: "primary.main",
+          width: "100%",
+          zIndex: 100,
+          height: "4rem",
         }}
       >
-        {displayPlay ? (
-          <PlayArrowIcon onClick={playMusic} />
-        ) : (
-          <PauseIcon onClick={playMusic} />
-        )}
-      </Avatar>
-    </Box>
-  );
+        <Box sx={{ position: "absolute", top: 0, width: "100%", color: "blue" }}>
+          <LinearProgress
+            variant="determinate"
+            value={progress}
+            sx={{
+              backgroundColor: "secondary.main",
+              "& .MuiLinearProgress-bar": { backgroundColor: "action.active" },
+            }}
+          />
+        </Box>
+        <Avatar variant="rounded" src={testImage} sx={{ marginLeft: 1 }} />
+        <Box ml={2}>
+          <Typography variant="subtitle1">Before You Wake Up</Typography>
+          <Typography variant="subtitle2" sx={{ color: "#868686" }}>
+            Adekunle Gold
+          </Typography>
+        </Box>
+        <Avatar
+          sx={{
+            bgcolor: "action.active",
+            color: "primary.main",
+            marginLeft: "auto",
+            marginRight: 2,
+          }}
+        >
+          {displayPlay ? (
+            <PlayArrowIcon onClick={playMusic} />
+          ) : (
+            <PauseIcon onClick={playMusic} />
+          )}
+        </Avatar>
+      </Box>
+    );
+  }
+ 
 }
