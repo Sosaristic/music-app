@@ -47,7 +47,7 @@ export default function Sidebar() {
         <Avatar sx={{ bgcolor: "action.active", color: "primary.main" }}>
           <MusicNoteIcon />
         </Avatar>
-        <Typography variant="subtitle1" sx={{ color: "white" }}>
+        <Typography variant="subtitle1" sx={{ color: "white", fontFamily: `'Satisfy', cursive`, }}>
           Music 360
         </Typography>
       </Box>
