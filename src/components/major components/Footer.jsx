@@ -1,4 +1,4 @@
-import { Box, Grid, Typography } from '@mui/material'
+import { Box,  Grid, Typography } from '@mui/material'
 import React from 'react'
 
 import FacebookRoundedIcon from '@mui/icons-material/FacebookRounded';
@@ -6,6 +6,10 @@ import InstagramIcon from '@mui/icons-material/Instagram';
 import TwitterIcon from '@mui/icons-material/Twitter';
 
 export default function Footer() {
+  const date = new Date();
+  const year = date.getUTCFullYear();
+
+  
   const LinkStyles = {
     display: "flex",
     flexDirection: "column",
@@ -21,20 +25,25 @@ export default function Footer() {
 </Grid>
 <Grid xs={6} sm={4} item p={4} sx={LinkStyles}>
   <Typography sx={{color: "white"}}>Company</Typography>
-  <Typography>About</Typography>
-  <Typography>Privacy Policy</Typography>
-  <Typography>Terms of services</Typography>
-  <Typography>Cookie Policy</Typography>
+  <Typography variant='body2'>About us</Typography>
+  <Typography variant='body2'>Privacy Policy</Typography>
+  <Typography variant='body2'>Terms of services</Typography>
+  <Typography variant='body2'>Cookie Policy</Typography>
 
 
 </Grid>
 <Grid xs={12} sm={4} item p={4} sx={LinkStyles}> 
-<Typography>Follow us</Typography>
+<Typography sx={{color: "white"}}>Follow us</Typography>
 <Box sx={{display: "flex", alignItems: "center", columnGap: 2}}>
   <FacebookRoundedIcon />
 <TwitterIcon />
 <InstagramIcon />
 </Box>
+
+</Grid>
+<Grid item xs={12} sx={{display: "flex", color: "#868686", justifyContent: "center"}}>
+  <Typography variant='body2'>&copy; {year} Music360. All rights reserved</Typography>
+  
 
 </Grid>
     </Grid>
