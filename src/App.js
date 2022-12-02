@@ -6,6 +6,7 @@ import Sidebar from "./components/major components/Sidebar";
 import { theme } from "./components/theme/theme";
 import BottomNav from "./components/major components/BottomNavigation";
 import MusicPlayer from "./components/major components/MusicPlayer";
+import MusicPlayerDesktop from "./components/major components/MusicPlayerDesktop"
 
 import { SideBarProvider } from "./context/Sidebar";
 import MobileTopAndSide from "./components/major components/MobileTopAndSide";
@@ -44,9 +45,11 @@ function App() {
               <Outlet />
               <MusicPlayer />
               <Footer />
+              
               <BottomNav />
               
             </Grid>
+            <MusicPlayerDesktop />
           </Grid>
         </ThemeProvider>
       
