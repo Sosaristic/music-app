@@ -48,14 +48,14 @@ const handleSideBar = ()=>{
         linkName="Home"
         active={activeLink("/")}
         url="/"
-        handleSideBar = {handleSideBar}
+        handleSideBar = {updateSideBar}
       />
       <NavList
         icon={<AlbumIcon />}
         linkName="Albums"
         active={activeLink("/albums")}
         url="albums"
-        handleSideBar = {handleSideBar}
+        handleSideBar = {updateSideBar}
 
       />
       <NavList
@@ -63,7 +63,7 @@ const handleSideBar = ()=>{
         linkName="Artists"
         active={activeLink("/artists")}
         url="artists"
-        handleSideBar = {handleSideBar}
+        handleSideBar = {updateSideBar}
 
       />
       <NavList
@@ -71,7 +71,7 @@ const handleSideBar = ()=>{
         linkName="Playlists"
         active={activeLink("/playlists")}
         url="playlists"
-        handleSideBar = {handleSideBar}
+        handleSideBar = {updateSideBar}
 
       />
       <NavList
@@ -79,7 +79,7 @@ const handleSideBar = ()=>{
         linkName="Tracks"
         active={activeLink("/tracks")}
         url="tracks"
-        handleSideBar = {handleSideBar}
+        handleSideBar = {updateSideBar}
 
       />
     </Box>

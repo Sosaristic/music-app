@@ -25,7 +25,7 @@ export default function Login() {
     <Box
       sx={{
         position: "relative",
-        height: "100%",
+        height: "100vh",
         display: "flex",
         justifyContent: "center",
         alignItems: "center",
